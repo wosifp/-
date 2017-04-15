@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>背景选择</title>
+		<script type="text/javascript">
+			(function(){
+				var html = document.documentElement;
+				var windowWidth = html.clientWidth;
+				console.log(windowWidth);
+				html.style.fontSize = windowWidth/12.42 + "px";
+			})()
+		</script>
+		<link rel="stylesheet" type="text/css" href="beijing_XZ.css"/>
+	</head>
+	<body>
+		<div class="toutu">
+			<img src="img/toutu.png" alt="" />
+		</div>
+		<div class="li_box">
+			<div class="li_baioti">
+				<span class="li_tu"></span>
+				<span class="li_zi">实惠套餐</span>
+			</div>
+			<ul class="li_ul">
+				<volist name="tc" id="vo">
+					<li class="li1 lidu">
+						<p class="li_left"><span class="qian">￥{$vo.money}</span>元</p>
+						<p class="li_right"><span class="yuefen">{$vo.month}月</span></p>
+						<p class="xiaoX"></p>
+					</li>
+				</volist>	
+			</ul>
+		</div>
+		<div class="dibu">
+			<p class="dibu_left">
+				<span class="dibu_name">总价&nbsp;￥</span>
+				<span class="dibu_money">100</span>
+			</p>
+			<p class="dibu_right">确认支付</p>
+		</div>
+	</body>
+</html>
+<script src="jQuery2.0.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$.ajax({
+		type:"post",
+		url:"",
+		async:true,
+		data:"",
+		success:function(){
+			
+		},
+		error:function(){
+			var qian = $(".qian").html();
+			var yuefen = $(".yuefen").html();
+			$(".qian").html(123)
+			$(".yuefen").html("圆角")
+		}
+	});
+	$(".dibu_money").html($(".li_ul .lidu").find(".qian").text());
+	$("li").on("click",function(){
+		$(this).css("borderColor","#dc3120").siblings().css("borderColor","#ccc")
+		$(this).find(".xiaoX").css("display","block")
+			   .end()
+			   .siblings()
+			   .find(".xiaoX").css("display","none")
+		$(".dibu_money").html($(this).find(".qian").text());
+	})
+	$(".dibu_right").on("click",function(){
+		alert("请确认提交")
+	})
+</script>
